@@ -1,24 +1,48 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import './assets/styles/App.scss'
+import Doc from './components/Dog'
+
+const { useState } = React;
+
+function getData() {
+  return new Promise(resolve => setTimeout(() => resolve(Math.random()), 1000))
+}
+
 
 function App() {
+  const [data, setData] = useState(0)
+
+  function onClick() {
+    console.info('Send request');
+    // getData().then(setData)
+  }
+
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+    <div className='w7e-page'>
+      <header>
+        Danos una pata
       </header>
+
+      <div className='w7s-center'>
+        <div className='w7s-container'>
+          <button className='' onClick={onClick}>
+            Buscar ganador
+           </button>
+        </div>
+      </div>
+
+      {/* <Doc /> */}
+
+      <footer>
+        <div className='w7s-left'>
+          @pethomeRD
+        </div>
+
+        <div className='w7s-right'>
+          @navi69
+        </div>
+      </footer>
     </div>
   );
 }
