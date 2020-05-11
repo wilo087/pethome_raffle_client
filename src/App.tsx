@@ -1,45 +1,37 @@
-import React from 'react';
-import './assets/styles/App.scss'
-import Doc from './components/Dog'
-
-const { useState } = React;
-
-function getData() {
-  return new Promise(resolve => setTimeout(() => resolve(Math.random()), 1000))
-}
-
+import React, { useState } from 'react';
+import './assets/styles/App.scss';
+// import Dog from './components/Dog'
 
 function App() {
-  const [data, setData] = useState(0)
-
-  function onClick() {
-    console.info('Send request');
-    // getData().then(setData)
-  }
+  const [data, setWinner] = useState(2216);
 
 
   return (
-    <div className='w7e-page'>
+    <div className="w7e-page">
       <header>
         Danos una pata
       </header>
 
-      <div className='w7s-center'>
-        <div className='w7s-container'>
-          <button className='' onClick={onClick}>
+      <div className="w7e-center">
+        <div className="w7e-container">
+          <button type="button" className="w7e" onClick={() => setWinner(data + 1)}>
             Buscar ganador
-           </button>
+          </button>
         </div>
+        <div className="w7e-winner">
+          Nombre: Cosita
+          Cédula: xxx-xxxx981-8
+          Código: {data}
+        </div>
+        {/* <Doc /> */}
       </div>
 
-      {/* <Doc /> */}
-
       <footer>
-        <div className='w7s-left'>
+        <div className="w7e-left">
           @pethomeRD
         </div>
 
-        <div className='w7s-right'>
+        <div className="w7e-right">
           @navi69
         </div>
       </footer>
