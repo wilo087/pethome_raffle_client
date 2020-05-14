@@ -1,10 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './assets/styles/App.scss';
 // import Dog from './components/Dog'
 
-function App() {
-  const [data, setWinner] = useState(2216);
-
+const App: React.FC = () => {
+  const [winner, setWinner] = React.useState(0);
 
   return (
     <div className="w7e-page">
@@ -14,16 +13,16 @@ function App() {
 
       <div className="w7e-center">
         <div className="w7e-container">
-          <button type="button" className="w7e" onClick={() => setWinner(data + 1)}>
+          <button type="button" className="w7e" onClick={(): void => setWinner(winner + 1)}>
             Buscar ganador
           </button>
         </div>
         <div className="w7e-winner">
           Nombre: Cosita
           Cédula: xxx-xxxx981-8
-          Código: {data}
+          Código:
+          {winner}
         </div>
-        {/* <Doc /> */}
       </div>
 
       <footer>
@@ -37,6 +36,6 @@ function App() {
       </footer>
     </div>
   );
-}
+};
 
 export default App;
