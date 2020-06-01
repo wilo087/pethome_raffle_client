@@ -11,29 +11,42 @@ const App: React.FC = () => {
   const [winner, setWinner] = React.useState(0);
 
   return (
-    <div className="w7e-page">
+    <>
       <div className="w7e-left">
-        <h1>Datos Una pata</h1>
+        <h1>
+          Danos
+          <br />
+          Una pata
+        </h1>
         <h2>
-          Para construir un albergue 
-          de mascotas que sea seguro, 
+          Para construir un albergue
+          <br />
+          de mascotas que sea seguro,
+          <br />
           amplio y esté lleno de amor.
         </h2>
 
         <div className="w7e-logos">
-          <img src={logoPetHome} alt="@petHomeRD" />
-          <img src={logoNavi} alt="@navi69" />
+          <div className="w7e-pethome">
+            <img src={logoPetHome} alt="@petHomeRD" />
+          </div>
+          <div className="w7e-navi">
+            <img src={logoNavi} alt="@navi69" />
+          </div>
         </div>
         {/* <button type="button" className="w7e" onClick={(): void => setWinner(winner + 1)}>
           Buscar ganador
         </button> */}
 
       </div>
-      <div className="w7e-card">
-        <img src={carImage} width="845" height="413" alt="Honda Fix 2015" />
+      <div className="w7e-right">
+        <div className="w7e-winner"> En minutos, esteHonda Fit 2015 puede ser tuyo </div>
+        <div className="w7e-car">
+          <img src={carImage} width="845" height="413" alt="Honda Fix 2015" />
+        </div>
       </div>
       <footer />
-    </div>
+    </>
   );
 };
 
