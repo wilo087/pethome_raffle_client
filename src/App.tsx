@@ -4,7 +4,7 @@ import './assets/styles/App.scss';
 import carImage from './assets/images/car@2x.png';
 import logoPetHome from './assets/images/pethomeRD@2x.png';
 import logoNavi from './assets/images/navi@2x.png';
-// import Dog from './components/Dog'
+import Dog from './components/Dog/Dog';
 
 const App: React.FC = () => {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -40,7 +40,16 @@ const App: React.FC = () => {
 
       </div>
       <div className="w7e-right">
-        <div className="w7e-winner"> En minutos, esteHonda Fit 2015 puede ser tuyo </div>
+        {/* <div className="w7e-winner"> En minutos, esteHonda Fit 2015 puede ser tuyo </div> */}
+        <div className="w7e-winner w7e-looking">
+          <div className="w7e-left">
+            <Dog />
+          </div>
+
+          <div className="w7e-right">
+            Buscando Ganador
+          </div>
+        </div>
         <div className="w7e-car">
           <img src={carImage} width="845" height="413" alt="Honda Fix 2015" />
         </div>
