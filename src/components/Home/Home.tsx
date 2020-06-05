@@ -1,4 +1,5 @@
-import React from 'react'
+import React from 'react';
+
 // import carImage from '../assets/images/car@2x.png';
 import carImage from '../../assets/images/car@2x.png';
 import logoPetHome from '../../assets/images/pethomeRD@2x.png';
@@ -51,6 +52,6 @@ const Home: React.FC = (): JSX.Element => (
     </div>
     <footer />
   </>
-)
+);
 
 export default Home;

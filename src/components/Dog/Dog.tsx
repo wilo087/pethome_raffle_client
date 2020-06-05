@@ -1,7 +1,7 @@
 import React from 'react';
 import './Dog.scss';
 
-const Dog: React.FC = () => (
+const Dog: React.FC = (): JSX.Element => (
   <div className="w7e-dog">
     <div className="perrito">
       <div className="torso">
