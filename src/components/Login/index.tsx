@@ -1,23 +1,23 @@
 import React, { useState } from 'react';
-import { useMutation } from '@apollo/react-hooks';
 import { gql } from 'apollo-boost';
-
+import { useMutation } from '@apollo/react-hooks';
 
 const SET_LOGIN = gql`
-mutation login($data: inputLogin!){
+  mutation login($data: inputLogin!){
   login(data: $data){
       token
   }
 }`;
 
 const Login: React.FC = (): JSX.Element => {
+
+  const [setLogin, { loading: mutationLoading }] = useMutation(SET_LOGIN);
   const [credentials, setCredentials] = useState({
-    user: '',
+    username: '',
     password: '',
   });
 
-  const [mutation] = useMutation(SET_LOGIN);
-
+  const [error, setError] = useState("");
 
   const handleChange = (e: React.FormEvent<HTMLInputElement>): void => {
     const { name, value } = e.currentTarget;
@@ -28,33 +28,40 @@ const Login: React.FC = (): JSX.Element => {
     }));
   };
 
-
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>): Promise<void> => {
+  const handleSubmit = async (e: any) => {
     e.preventDefault();
 
-    const response = await mutation({
+    setLogin({
       variables: {
         data: {
-          user: credentials.user,
-          password: credentials.password,
-        },
-      },
-    });
-  };
-
+          username: credentials.username,
+          password: credentials.password
+        }
+      }
+    }).catch((err: any) => {
+      err.graphQLErrors.map((e: any) => {
+        if (e.message === 'Unauthorized') {
+          setError('Invalid Credentials');
+        } else {
+          setError('ups intentente de nuevo, hahahah');
+        }
+      })
+    })
+  }
 
   return (
     <div>
+
       <div className="amd-conteiner">
         <form onSubmit={handleSubmit}>
 
           <input
             type="text"
             className=""
-            name="user"
+            name="username"
             onChange={handleChange}
-            placeholder="user"
-            value={credentials.user}
+            placeholder="username"
+            value={credentials.username}
           />
 
           <input
@@ -62,6 +69,7 @@ const Login: React.FC = (): JSX.Element => {
             className=""
             placeholder="password"
             name="password"
+            autoComplete="off"
             onChange={handleChange}
             value={credentials.password}
           />
@@ -69,8 +77,9 @@ const Login: React.FC = (): JSX.Element => {
         </form>
 
       </div>
-      {error && <p>Error :( Please try again</p>}
-    </div>
+      {mutationLoading && <p>Loadind....</p>}
+      {error && <p>{error}</p>}
+    </div >
   );
 };
 

@@ -7,7 +7,7 @@ import {
 
 import './assets/styles/App.scss';
 import Home from './components/Home/Home';
-import Login from './components/Login/Login';
+import Login from './components/Login';
 
 
 const App: React.FC = (): JSX.Element => (
