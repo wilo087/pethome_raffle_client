@@ -4,7 +4,7 @@ import React from 'react';
 import carImage from '../../assets/images/car@2x.png';
 import logoPetHome from '../../assets/images/pethomeRD@2x.png';
 import logoNavi from '../../assets/images/navi@2x.png';
-import Dog from '../Dog/Dog';
+import Dog from '../Dog';
 
 const Home: React.FC = (): JSX.Element => (
   <>

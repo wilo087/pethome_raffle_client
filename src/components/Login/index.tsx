@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { gql } from 'apollo-boost';
 import { useMutation } from '@apollo/react-hooks';
 
+import { Error, GQLError } from './types';
+
 const SET_LOGIN = gql`
   mutation login($data: inputLogin!){
   login(data: $data){
@@ -10,14 +12,13 @@ const SET_LOGIN = gql`
 }`;
 
 const Login: React.FC = (): JSX.Element => {
-
   const [setLogin, { loading: mutationLoading }] = useMutation(SET_LOGIN);
   const [credentials, setCredentials] = useState({
     username: '',
     password: '',
   });
 
-  const [error, setError] = useState("");
+  const [error, setError] = useState('');
 
   const handleChange = (e: React.FormEvent<HTMLInputElement>): void => {
     const { name, value } = e.currentTarget;
@@ -28,26 +29,26 @@ const Login: React.FC = (): JSX.Element => {
     }));
   };
 
-  const handleSubmit = async (e: any) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
 
     setLogin({
       variables: {
         data: {
           username: credentials.username,
-          password: credentials.password
-        }
-      }
-    }).catch((err: any) => {
-      err.graphQLErrors.map((e: any) => {
-        if (e.message === 'Unauthorized') {
+          password: credentials.password,
+        },
+      },
+    }).catch((errors: GQLError): void => {
+      errors.graphQLErrors.forEach((err: Error): void => {
+        if (err.message === 'Unauthorized') {
           setError('Invalid Credentials');
         } else {
           setError('ups intentente de nuevo, hahahah');
         }
-      })
-    })
-  }
+      });
+    });
+  };
 
   return (
     <div>
@@ -79,7 +80,7 @@ const Login: React.FC = (): JSX.Element => {
       </div>
       {mutationLoading && <p>Loadind....</p>}
       {error && <p>{error}</p>}
-    </div >
+    </div>
   );
 };
 
