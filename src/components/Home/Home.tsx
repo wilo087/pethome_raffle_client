@@ -4,7 +4,8 @@ import React from 'react';
 import carImage from '../../assets/images/car@2x.png';
 import logoPetHome from '../../assets/images/pethomeRD@2x.png';
 import logoNavi from '../../assets/images/navi@2x.png';
-import Dog from '../Dog/Dog';
+// import Dog from '../Dog/Dog';
+import docImg from '../../assets/images/dog@2x.png';
 
 const Home: React.FC = (): JSX.Element => (
   <>
@@ -37,12 +38,14 @@ const Home: React.FC = (): JSX.Element => (
     </div>
     <div className="w7e-right">
       {/* <div className="w7e-winner"> En minutos, esteHonda Fit 2015 puede ser tuyo </div> */}
+      { /**/}
       <div className="w7e-winner w7e-looking">
-        <div className="w7e-left">
-          <Dog />
+        <div className="w7e-wleft">
+          {/* <Dog /> */}
+          <img src={docImg} alt="docImage" />
         </div>
 
-        <div className="w7e-right">
+        <div className="w7e-wright">
           Buscando Ganador
         </div>
       </div>

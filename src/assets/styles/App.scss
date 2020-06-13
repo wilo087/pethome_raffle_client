@@ -127,6 +127,22 @@ h2 {
       }
     }
 
+    .w7e-looking {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+
+      .w7e-wleft {
+        flex: 0 0 154px;
+        margin-top: -30px;
+        img {
+          max-width: 154px;
+        }
+      }
+      .w7e-wright {
+      }
+    }
+
     .w7e-car {
       position: absolute;
       bottom: 20px;
