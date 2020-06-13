@@ -69,7 +69,7 @@ const Login: React.FC = (): JSX.Element => {
         </form>
 
       </div>
-      {error && <p>Error :( Please try again</p>}
+      {/* {error && <p>Error :( Please try again</p>} */}
     </div>
   );
 };
