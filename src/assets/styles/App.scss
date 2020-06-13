@@ -105,7 +105,7 @@ h2 {
       border-radius: 45px;
       height: 262px;
       width: 565px;
-      padding: 53px;
+      padding: 31px 53px;
 
       &:before,
       &:after {
@@ -130,8 +130,8 @@ h2 {
 
     /* For inicial looking for the winner css
     **************************************/
-    .w7e-looking {
-      display: flex;
+    .w7e-step2 {
+      display: none;
       flex-direction: row;
       align-items: center;
 
@@ -147,7 +147,8 @@ h2 {
 
     /* Shwing up the winner
     **************************************/
-    .w7e-thewinner {
+    .w7e-step3 {
+      display: none;
       line-height: 53px;
       padding: 45px 53px;
 
