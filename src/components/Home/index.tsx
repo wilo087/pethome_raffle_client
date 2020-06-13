@@ -38,17 +38,23 @@ const Home: React.FC = (): JSX.Element => (
     </div>
     <div className="w7e-right">
       {/* <div className="w7e-winner"> En minutos, esteHonda Fit 2015 puede ser tuyo </div> */}
-      { /**/}
-      <div className="w7e-winner w7e-looking">
+      {/*-------------------------------------------------------*/}
+      {/* <div className="w7e-winner w7e-looking">
         <div className="w7e-wleft">
-          {/* <Dog /> */}
           <img src={docImg} alt="docImage" />
         </div>
-
         <div className="w7e-wright">
           Buscando Ganador
         </div>
+      </div> */}
+      {/*-------------------------------------------------------*/}
+
+      <div className="w7e-winner w7e-thewinner">
+        ¡Felicidades!
+        <div>JUANA PEREZ</div>
+        xxx-xxxx31-7
       </div>
+
       <div className="w7e-car">
         <img src={carImage} width="845" height="413" alt="Honda Fix 2015" />
       </div>
