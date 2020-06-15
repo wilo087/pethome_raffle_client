@@ -1,4 +1,4 @@
-import React, { useEffect, useCallback } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import carImage from '../../assets/images/car@2x.png';
 import logoPetHome from '../../assets/images/pethomeRD@2x.png';
@@ -6,22 +6,21 @@ import logoNavi from '../../assets/images/navi@2x.png';
 import docImg from '../../assets/images/dog@2x.png';
 
 const Home: React.FC = (): JSX.Element => {
-  const getWinner = useCallback((e) => {
-    if (e.keyCode === 32) {
-      e.preventDefault();
-      // eslint-disable-next-line no-console
-      console.log(`${e.keyCode} has been pressed`);
-    }
-  }, []);
+  const [step, setStep] = useState(0);
 
   useEffect(() => {
-    document.addEventListener('keydown', getWinner, false);
+    const handleSpace = (event: any): void => {
+      if (event.keyCode === 32) {
+        event.preventDefault();
+        setStep(step + 1);
+      }
+    };
+    window.addEventListener('keydown', handleSpace);
 
     return (): void => {
-      document.removeEventListener('keydown', getWinner, false);
+      window.removeEventListener('keydown', handleSpace);
     };
-  });
-
+  }, [step]);
 
   return (
     <>
@@ -54,7 +53,10 @@ const Home: React.FC = (): JSX.Element => {
       </div>
       <div className="w7e-right">
 
-        <div className="w7e-winner w7e-step1"> En minutos, esteHonda Fit 2015 puede ser tuyo </div>
+        <div className="w7e-winner w7e-step1">
+          En minutos, esteHonda Fit 2015 puede ser tuyo
+          {step}
+        </div>
 
         <div className="w7e-winner w7e-step2">
           <div className="w7e-wleft">
