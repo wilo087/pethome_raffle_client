@@ -194,14 +194,6 @@ h2 {
 }
 
 // Winner move down and up animation
-@-webkit-keyframes moveUpDown {
-  0% {
-    transform: translateY(0);
-  }
-  100% {
-    transform: translateY(-10px);
-  }
-}
 @keyframes moveUpDown {
   0% {
     transform: translateY(0);
