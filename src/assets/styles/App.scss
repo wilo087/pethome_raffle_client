@@ -91,19 +91,21 @@ h2 {
     display: flex;
     justify-content: center;
 
+    /* For inicial message (En minutos, esteHonda Fit 2015 puede ser tuyo)
+    **************************************/
     .w7e-winner {
       position: relative;
       z-index: 1;
       line-height: 46px;
       font-size: 46px;
       border: solid 9px #f49a1c;
-      font-family: "Helvetica Neue LT Std";
+      font-family: "Helvetica Neue LT Std hv";
       text-transform: uppercase;
       text-align: center;
       border-radius: 45px;
       height: 262px;
       width: 565px;
-      padding: 53px;
+      padding: 31px 53px;
 
       &:before,
       &:after {
@@ -120,10 +122,39 @@ h2 {
         border-color: #f39a2b transparent transparent;
       }
       &:after {
-        content: " ";
         left: 258px;
         bottom: -58px;
         border-color: #dfe4ea transparent transparent;
+      }
+    }
+
+    /* For inicial looking for the winner css
+    **************************************/
+    .w7e-step2 {
+      display: none;
+      flex-direction: row;
+      align-items: center;
+
+      .w7e-wleft {
+        flex: 0 0 154px;
+        margin-top: -30px;
+
+        img {
+          max-width: 154px;
+        }
+      }
+    }
+
+    /* Shwing up the winner
+    **************************************/
+    .w7e-step3 {
+      display: none;
+      line-height: 53px;
+      padding: 45px 53px;
+
+      > div {
+        font-size: 60px;
+        color: #29b6b8;
       }
     }
 
