@@ -5,11 +5,11 @@ export interface GQLError {
 export interface Error {
   message: string;
   statusCode?: number;
-  extensions: ErrorsExtensions
+  extensions: ErrorsExtensions;
 }
 
 
 export interface ErrorsExtensions {
   code: string;
-  exception: {}
+  exception: {};
 }

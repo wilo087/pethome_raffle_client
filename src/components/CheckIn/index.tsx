@@ -1,12 +1,11 @@
-import React, { useState, } from 'react';
+import React, { useState } from 'react';
 import { gql } from 'apollo-boost';
 import { useMutation } from '@apollo/react-hooks';
-import { Error } from '../../interfaces'
 import { Alert } from '@material-ui/lab';
 
-
-import './checkin.scss';
+import { Error } from '../../interfaces';
 import Loading from '../Loading';
+import './checkin.scss';
 
 
 const SET_CHECKIN = gql`
@@ -55,15 +54,14 @@ const CheckIn: React.FC = (): JSX.Element => {
       });
 
       setError('');
-
-    } catch (error) {
-      error.graphQLErrors.forEach((err: Error) => {
+    } catch (e) {
+      e.graphQLErrors.forEach((err: Error): void => {
         if (err.extensions.code !== 'INTERNAL_SERVER_ERROR') {
-          return setError(err.message)
+          setError(err.message);
         } else {
-          setError('an error occurred please try again later')
+          setError('an error occurred please try again later');
         }
-      })
+      });
     }
   };
 
@@ -71,15 +69,23 @@ const CheckIn: React.FC = (): JSX.Element => {
     <div>
       {mutationData && (
         <Alert
-          severity="success">
-          the user {mutationData.createUser.name} is created
+          severity="success"
+        >
+          the user
+          {' '}
+          {mutationData.createUser.name}
+          {' '}
+          is created
         </Alert>
       )}
 
-      {error && (<Alert
-        severity="error">
-        {error}
-      </Alert>)}
+      {error && (
+        <Alert
+          severity="error"
+        >
+          {error}
+        </Alert>
+      )}
 
       <div className="form">
         <div id="signup">
@@ -90,7 +96,7 @@ const CheckIn: React.FC = (): JSX.Element => {
               <div className="field-wrap">
                 <label htmlFor="name">
                   Name
-                {' '}
+                  {' '}
                   <span className="req">*</span>
                 </label>
 
@@ -107,7 +113,7 @@ const CheckIn: React.FC = (): JSX.Element => {
               <div className="field-wrap">
                 <label htmlFor="code">
                   Code
-                {' '}
+                  {' '}
                   <span className="req">*</span>
                 </label>
 
@@ -125,7 +131,7 @@ const CheckIn: React.FC = (): JSX.Element => {
             <div className="field-wrap">
               <label htmlFor="identificationCard">
                 Identification Card
-              {' '}
+                {' '}
                 <span className="req">*</span>
               </label>
 
@@ -141,14 +147,13 @@ const CheckIn: React.FC = (): JSX.Element => {
             </div>
             <button type="submit" className="button button-block">
               Save
-          </button>
+            </button>
           </form>
         </div>
         {loading && <Loading />}
-      </div >
+      </div>
     </div>
   );
 };
 
 export default CheckIn;
-
