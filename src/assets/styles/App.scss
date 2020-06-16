@@ -60,6 +60,7 @@ h2 {
       color: #f49a1c;
       line-height: 70px;
       margin-top: 45px;
+      text-align: left;
     }
 
     h2 {
@@ -141,9 +142,12 @@ h2 {
     .w7e-step2 {
       flex-direction: row;
       align-items: center;
+      padding: 31px 53px 31px 30px;
 
       .w7e-wleft {
         flex: 0 0 154px;
+        max-width: 154px;
+        overflow: hidden;
         margin-top: -30px;
 
         img {

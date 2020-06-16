@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 
+import Dog from '../Dog';
 import carImage from '../../assets/images/car@2x.png';
 import logoPetHome from '../../assets/images/pethomeRD@2x.png';
 import logoNavi from '../../assets/images/navi@2x.png';
-import docImg from '../../assets/images/dog@2x.png';
 
 const Home: React.FC = (): JSX.Element => {
   const [step, setStep] = useState(1);
@@ -58,7 +58,7 @@ const Home: React.FC = (): JSX.Element => {
 
         <div className={`w7e-winner w7e-step2 ${step === 2 ? 'active' : ''}`}>
           <div className="w7e-wleft">
-            <img src={docImg} alt="docImage" />
+            <Dog />
           </div>
 
           <div className="w7e-wright">
