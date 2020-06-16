@@ -17,17 +17,19 @@ const SET_CHECKIN = gql`
   }
 }`;
 
+const InitialState = {
+  name: '',
+  code: '',
+  identificationCard: '',
+};
+
 const CheckIn: React.FC = (): JSX.Element => {
   const [setCheckIn, { loading, data: mutationData }] = useMutation(SET_CHECKIN, {
     ignoreResults: false,
   });
   const [error, setError] = useState('');
 
-  const [data, setData] = useState({
-    name: '',
-    code: '',
-    identificationCard: '',
-  });
+  const [data, setData] = useState(InitialState);
 
   const handleChange = (e: React.FormEvent<HTMLInputElement>): void => {
     const { name, value } = e.currentTarget;
@@ -54,6 +56,7 @@ const CheckIn: React.FC = (): JSX.Element => {
       });
 
       setError('');
+      setData({ ...InitialState });
     } catch (e) {
       e.graphQLErrors.forEach((err: Error): void => {
         if (err.extensions.code !== 'INTERNAL_SERVER_ERROR') {
