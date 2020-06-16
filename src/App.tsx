@@ -8,6 +8,7 @@ import {
 import './assets/styles/App.scss';
 import Home from './components/Home';
 import Login from './components/Login';
+import CheckIn from './components/CheckIn';
 
 
 const App: React.FC = (): JSX.Element => (
@@ -16,6 +17,7 @@ const App: React.FC = (): JSX.Element => (
   <Router>
     <Switch>
       <Route path="/Login" component={Login} />
+      <Route path="/checkin" component={CheckIn} />
       <Route path="/" component={Home} />
     </Switch>
   </Router>
