@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
 import { gql } from 'apollo-boost';
 import { useMutation } from '@apollo/react-hooks';
-
-import { Error, GQLError } from '../../interfaces';
 import Loading from '../Loading';
+import { Error, GQLError } from '../../interfaces'
 
 const SET_LOGIN = gql`
   mutation login($data: inputLogin!){
@@ -32,6 +31,7 @@ const Login: React.FC = (): JSX.Element => {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
+
     setLogin({
       variables: {
         data: {
@@ -39,14 +39,14 @@ const Login: React.FC = (): JSX.Element => {
           password: credentials.password,
         },
       },
-    }).catch((errors: GQLError): void => {
-      errors.graphQLErrors.forEach((err: Error): void => {
-        if (err.message === 'Unauthorized') {
-          setError('Invalid Credentials');
+    }).catch((error: GQLError) => {
+      error.graphQLErrors.forEach((err: Error) => {
+        if (err.extensions.code === 'UNAUTHENTICATED') {
+          return setError('Invalid Credentials')
         }
-      });
-    });
-    setError('an error occurred try again later');
+      })
+    })
+    setError('an error occurred please try again later')
   };
 
   return (
