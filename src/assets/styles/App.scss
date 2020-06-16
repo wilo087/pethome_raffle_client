@@ -68,6 +68,7 @@ h2 {
       font-size: 34px;
       color: #414141;
       line-height: 35px;
+      max-width: 400px;
     }
 
     .w7e-logos {
@@ -132,7 +133,7 @@ h2 {
     /* Message before look for the winner
     **************************************/
     .w7e-step1 {
-      animation: moveUpDown 6s infinite alternate;
+      animation: moveUpDown 1s infinite alternate;
     }
 
     /* For inicial looking for the winner css
@@ -154,7 +155,7 @@ h2 {
     /* Shwing up the winner
     **************************************/
     .w7e-step3 {
-      animation: shake 1s infinite alternate;
+      animation: shake 4s infinite alternate;
       line-height: 53px;
       padding: 45px 53px;
       flex-direction: column;
@@ -166,7 +167,7 @@ h2 {
     }
 
     .active {
-      transition: ease-in 0.7s all;
+      // transition: ease-in 0.7s all;
       display: flex;
       opacity: 1;
       z-index: 2;

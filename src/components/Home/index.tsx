@@ -33,16 +33,11 @@ const Home: React.FC = (): JSX.Element => {
   return (
     <>
       <div className="w7e-left">
-        <h1>
-          Danos
-          <br />
-          Una pata
-        </h1>
+        <h1> Danos Una pata </h1>
+
         <h2>
           Para construir un albergue
-          <br />
           de mascotas que sea seguro,
-          <br />
           amplio y esté lleno de amor.
         </h2>
 
@@ -56,8 +51,8 @@ const Home: React.FC = (): JSX.Element => {
           </div>
         </div>
       </div>
-      <div className="w7e-right">
 
+      <div className="w7e-right">
         <div ref={wrapper} className={`w7e-winner w7e-step1 ${step === 1 ? 'active' : ''}`}>
           En minutos, este Honda Fit 2015 puede ser tuyo
         </div>
@@ -66,6 +61,7 @@ const Home: React.FC = (): JSX.Element => {
           <div className="w7e-wleft">
             <img src={docImg} alt="docImage" />
           </div>
+
           <div className="w7e-wright">
             Buscando Ganador
           </div>
