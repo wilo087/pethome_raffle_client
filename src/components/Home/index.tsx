@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import carImage from '../../assets/images/car@2x.png';
 import logoPetHome from '../../assets/images/pethomeRD@2x.png';
@@ -7,7 +7,6 @@ import docImg from '../../assets/images/dog@2x.png';
 
 const Home: React.FC = (): JSX.Element => {
   const [step, setStep] = useState(1);
-  const wrapper = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     const handleSpace = (event: any): void => {
@@ -53,11 +52,11 @@ const Home: React.FC = (): JSX.Element => {
       </div>
 
       <div className="w7e-right">
-        <div ref={wrapper} className={`w7e-winner w7e-step1 ${step === 1 ? 'active' : ''}`}>
+        <div className={`w7e-winner w7e-step1 ${step === 1 ? 'active' : ''}`}>
           En minutos, este Honda Fit 2015 puede ser tuyo
         </div>
 
-        <div ref={wrapper} className={`w7e-winner w7e-step2 ${step === 2 ? 'active' : ''}`}>
+        <div className={`w7e-winner w7e-step2 ${step === 2 ? 'active' : ''}`}>
           <div className="w7e-wleft">
             <img src={docImg} alt="docImage" />
           </div>
