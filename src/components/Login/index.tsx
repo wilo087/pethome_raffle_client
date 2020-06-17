@@ -89,7 +89,7 @@ const Login: React.FC = (): JSX.Element => {
                 value={credentials.password}
               />
             </div>
-            <button className="button button-block">Log In</button>
+            <button type="submit" className="button button-block">Log In</button>
           </form>
           {mutationLoading && <Loading />}
         </div>
