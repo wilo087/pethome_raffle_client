@@ -41,8 +41,8 @@ const Login: React.FC = (): JSX.Element => {
 
           login({ variables: { data } })
             .then((resp: any) => {
-              history.push('/');
               setToken(resp.data.login.token);
+              history.push('/');
             })
             /* eslint-disable no-shadow */
             .catch((e: GQLError): void => {
