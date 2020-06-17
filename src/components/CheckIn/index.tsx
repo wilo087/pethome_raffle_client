@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { gql } from 'apollo-boost';
 import { useMutation } from '@apollo/react-hooks';
 import { Alert } from '@material-ui/lab';
+import { useHistory } from 'react-router-dom';
 
 import { Error } from '../../interfaces';
 import Loading from '../Loading';
@@ -27,6 +28,7 @@ const CheckIn: React.FC = (): JSX.Element => {
   const [setCheckIn, { loading, data: mutationData }] = useMutation(SET_CHECKIN, {
     ignoreResults: false,
   });
+  const history = useHistory();
   const [error, setError] = useState('');
   const [data, setData] = useState(InitialState);
 
@@ -57,9 +59,10 @@ const CheckIn: React.FC = (): JSX.Element => {
       setError('');
       setData({ ...InitialState });
     } catch (e) {
+      /* eslint-disable no-shadow */
       e.graphQLErrors.forEach((err: Error): void => {
-        if (err.extensions.code !== 'INTERNAL_SERVER_ERROR') {
-          setError(err.message);
+        if (err.extensions.code === 'UNAUTHENTICATED') {
+          history.push('/login');
         } else {
           setError('an error occurred please try again later');
         }
