@@ -24,7 +24,6 @@ const CheckIn: React.FC = (): JSX.Element => {
   const history = useHistory();
   const [error, setError] = useState('');
   const [data, setData] = useState<State>(InitialState);
-
   const handleChange = (e: React.FormEvent<HTMLInputElement>): void => {
     const { name, value } = e.currentTarget;
 
@@ -36,7 +35,9 @@ const CheckIn: React.FC = (): JSX.Element => {
 
   return (
     <CheckInMutation>
-      {(checkin: CallableFunction, { loading }: { loading: boolean }): JSX.Element => {
+      {(checkin: CallableFunction, { data: dataMutation, loading }:
+        { data: any, loading: boolean }): JSX.Element => {
+
         const handleSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
           e.preventDefault();
 
@@ -59,6 +60,7 @@ const CheckIn: React.FC = (): JSX.Element => {
                 }
               });
             });
+          setError('')
         };
         return (
           <div className="form">
@@ -66,7 +68,13 @@ const CheckIn: React.FC = (): JSX.Element => {
               <Alert severity="error">
                 {error}
               </Alert>
-            )}
+            )} {
+              dataMutation && (
+                <Alert severity="success">
+                  the participant {dataMutation.createUser.name} is register
+                </Alert>
+              )
+            }
             <div id="signup">
               <h1>Register Participant</h1>
               <form onSubmit={handleSubmit}>

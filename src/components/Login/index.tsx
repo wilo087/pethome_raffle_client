@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import { Alert } from '@material-ui/lab';
+import { useHistory } from 'react-router-dom';
 
 import Loading from '../Loading';
 import { Error, GQLError } from '../../interfaces';
 import './Login.scss';
 import LoginMutation from './LoginMutation';
+import { useLocalStorage } from '../../hooks/UseLocalStorage';
 
 interface Credentials {
   username: string;
@@ -18,6 +20,8 @@ const Login: React.FC = (): JSX.Element => {
   });
 
   const [error, setError] = useState('');
+  const [_, setToken] = useLocalStorage('token');
+  const history = useHistory();
 
   const handleChange = (e: React.FormEvent<HTMLInputElement>): void => {
     const { name, value } = e.currentTarget;
@@ -36,6 +40,10 @@ const Login: React.FC = (): JSX.Element => {
           const data = { username: credentials.username, password: credentials.password };
 
           login({ variables: { data } })
+            .then((resp: any) => {
+              history.push('/');
+              setToken(resp.data.login.token);
+            })
             /* eslint-disable no-shadow */
             .catch((e: GQLError): void => {
               e.graphQLErrors.forEach((err: Error) => {
