@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import { gql } from 'apollo-boost';
 import { useMutation } from '@apollo/react-hooks';
+import { Alert } from '@material-ui/lab';
 
 import Loading from '../Loading';
 import { Error, GQLError } from '../../interfaces';
+import './Login.scss';
 
 const SET_LOGIN = gql`
   mutation login($data: inputLogin!){
@@ -51,36 +53,49 @@ const Login: React.FC = (): JSX.Element => {
   };
 
   return (
-    <div>
+    <div className="amd-container">
+      {error && (
+        <Alert
+          severity="error"
+        >
+          {error}
+        </Alert>
+      )}
+      <br />
 
-      <div className="amd-conteiner">
-        <form onSubmit={handleSubmit}>
+      <div className="form-login login-fm">
+        <div id="login">
+          <form onSubmit={handleSubmit}>
+            <div className="field-wrap">
+              <input
+                placeholder="username"
+                type="text"
+                required
+                autoComplete="off"
+                name="username"
+                onChange={handleChange}
+                value={credentials.username}
+              />
+            </div>
 
-          <input
-            type="text"
-            className=""
-            name="username"
-            onChange={handleChange}
-            placeholder="username"
-            value={credentials.username}
-          />
+            <div className="field-wrap">
 
-          <input
-            type="password"
-            className=""
-            placeholder="password"
-            name="password"
-            autoComplete="off"
-            onChange={handleChange}
-            value={credentials.password}
-          />
-          <button type="submit">Inciar Sesión</button>
-        </form>
-
+              <input
+                type="password"
+                name="password"
+                placeholder="password"
+                autoComplete="off"
+                onChange={handleChange}
+                value={credentials.password}
+              />
+            </div>
+            <button className="button button-block">Log In</button>
+          </form>
+          {mutationLoading && <Loading />}
+        </div>
       </div>
-      {mutationLoading && <Loading />}
-      {error && <p>{error}</p>}
     </div>
+
   );
 };
 

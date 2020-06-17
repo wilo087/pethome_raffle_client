@@ -28,7 +28,6 @@ const CheckIn: React.FC = (): JSX.Element => {
     ignoreResults: false,
   });
   const [error, setError] = useState('');
-
   const [data, setData] = useState(InitialState);
 
   const handleChange = (e: React.FormEvent<HTMLInputElement>): void => {
