@@ -6,9 +6,13 @@ import { Error, GQLError } from '../../interfaces';
 import './Login.scss';
 import LoginMutation from './LoginMutation';
 
+interface Credentials {
+  username: string;
+  password: string;
+}
 
 const Login: React.FC = (): JSX.Element => {
-  const [credentials, setCredentials] = useState({
+  const [credentials, setCredentials] = useState<Credentials>({
     username: '',
     password: '',
   });
@@ -26,7 +30,7 @@ const Login: React.FC = (): JSX.Element => {
 
   return (
     <LoginMutation>
-      {(login: CallableFunction, { loading }: any): JSX.Element => {
+      {(login: CallableFunction, { loading }: { loading: boolean }): JSX.Element => {
         const handleSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
           e.preventDefault();
           const data = { username: credentials.username, password: credentials.password };
@@ -34,7 +38,7 @@ const Login: React.FC = (): JSX.Element => {
           login({ variables: { data } })
             /* eslint-disable no-shadow */
             .catch((e: GQLError): void => {
-              e.graphQLErrors.forEach((err: Error): void => {
+              e.graphQLErrors.forEach((err: Error) => {
                 if (err.extensions.code === 'UNAUTHENTICATED') {
                   setError('Invalid Credentials');
                 } else {
