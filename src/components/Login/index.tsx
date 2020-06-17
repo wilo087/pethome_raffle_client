@@ -6,7 +6,7 @@ import Loading from '../Loading';
 import { Error, GQLError } from '../../interfaces';
 import './Login.scss';
 import LoginMutation from './LoginMutation';
-import { useLocalStorage } from '../../hooks/UseLocalStorage';
+import useLocalStorage from '../../hooks/UseLocalStorage';
 
 interface Credentials {
   username: string;
@@ -20,7 +20,7 @@ const Login: React.FC = (): JSX.Element => {
   });
 
   const [error, setError] = useState('');
-  const [_, setToken] = useLocalStorage('token');
+  const [, setToken] = useLocalStorage('token');
   const history = useHistory();
 
   const handleChange = (e: React.FormEvent<HTMLInputElement>): void => {

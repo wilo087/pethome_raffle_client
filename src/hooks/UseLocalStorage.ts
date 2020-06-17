@@ -1,23 +1,21 @@
-import { useState } from 'react'
+import { useState } from 'react';
 
-export function useLocalStorage(key: string, initialValue?: string) {
+function useLocalStorage(key: string, initialValue?: string): any {
   const [storedValue, setValue] = useState(() => {
     try {
-      const item = window.localStorage.getItem(key)
-      return item !== null ? JSON.parse(item) : initialValue
+      const item = window.localStorage.getItem(key);
+      return item !== null ? JSON.parse(item) : initialValue;
     } catch (e) {
-      return initialValue
+      return initialValue;
     }
-  })
+  });
 
-  const setLocalStorage = (value: string) => {
-    try {
-      setValue(value)
-      window.localStorage.setItem(key, value)
-    } catch (error) {
-      console.error(error)
-    }
-  }
+  const setLocalStorage = (value: string): void => {
+    setValue(value);
+    window.localStorage.setItem(key, value);
+  };
 
-  return [storedValue, setLocalStorage]
+  return [storedValue, setLocalStorage];
 }
+
+export default useLocalStorage;

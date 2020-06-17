@@ -36,8 +36,7 @@ const CheckIn: React.FC = (): JSX.Element => {
   return (
     <CheckInMutation>
       {(checkin: CallableFunction, { data: dataMutation, loading }:
-        { data: any, loading: boolean }): JSX.Element => {
-
+      { data: any; loading: boolean }): JSX.Element => {
         const handleSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
           e.preventDefault();
 
@@ -60,7 +59,7 @@ const CheckIn: React.FC = (): JSX.Element => {
                 }
               });
             });
-          setError('')
+          setError('');
         };
         return (
           <div className="form">
@@ -68,10 +67,16 @@ const CheckIn: React.FC = (): JSX.Element => {
               <Alert severity="error">
                 {error}
               </Alert>
-            )} {
+            )}
+            {' '}
+            {
               dataMutation && (
                 <Alert severity="success">
-                  the participant {dataMutation.createUser.name} is register
+                  the participant
+                  {' '}
+                  {dataMutation.createUser.name}
+                  {' '}
+                  is register
                 </Alert>
               )
             }

@@ -12,6 +12,7 @@ module.exports = {
     'plugin:@typescript-eslint/eslint-recommended',
   ],
   rules: {
+    'react/jsx-props-no-spreading': 0,
     'react-hooks/rules-of-hooks': 'error',
     'react-hooks/exhaustive-deps': 'warn',
     'dot-notation': 0,
