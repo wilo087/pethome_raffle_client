@@ -16,7 +16,7 @@ $bold: 600;
 $br: 4px;
 
 
-a {
+.form a {
   text-decoration:none;
   color:$main;
   transition:.5s ease;
@@ -33,6 +33,9 @@ a {
   box-shadow:0 4px 10px 4px rgba($form-bg,.3);
   font-family: 'Titillium Web', sans-serif;
   height: 390px;
+  ::placeholder{
+    color: #AEAEAE;
+  }
 }
 .tab-group {
   list-style:none;

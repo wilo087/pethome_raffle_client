@@ -36,7 +36,7 @@ const CheckIn: React.FC = (): JSX.Element => {
   return (
     <CheckInMutation>
       {(checkin: CallableFunction, { data: dataMutation, loading }:
-      { data: any; loading: boolean }): JSX.Element => {
+        { data: any; loading: boolean }): JSX.Element => {
         const handleSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
           e.preventDefault();
 
@@ -86,14 +86,9 @@ const CheckIn: React.FC = (): JSX.Element => {
                 <div className="top-row">
 
                   <div className="field-wrap">
-                    <label htmlFor="name">
-                      Name
-                      {' '}
-                      <span className="req">*</span>
-                    </label>
-
                     <input
                       name="name"
+                      placeholder="name"
                       type="text"
                       required
                       autoComplete="off"
@@ -103,14 +98,9 @@ const CheckIn: React.FC = (): JSX.Element => {
                   </div>
 
                   <div className="field-wrap">
-                    <label htmlFor="code">
-                      Code
-                      {' '}
-                      <span className="req">*</span>
-                    </label>
-
                     <input
                       name="code"
+                      placeholder="code"
                       type="number"
                       required
                       autoComplete="off"
@@ -121,14 +111,9 @@ const CheckIn: React.FC = (): JSX.Element => {
                   </div>
                 </div>
                 <div className="field-wrap">
-                  <label htmlFor="identificationCard">
-                    Identification Card
-                    {' '}
-                    <span className="req">*</span>
-                  </label>
-
                   <input
                     name="identificationCard"
+                    placeholder="identification card"
                     type="text"
                     required
                     autoComplete="off"
