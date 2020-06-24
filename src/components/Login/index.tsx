@@ -46,13 +46,15 @@ const Login: React.FC = (): JSX.Element => {
             })
             /* eslint-disable no-shadow */
             .catch((e: GQLError): void => {
-              e.graphQLErrors.forEach((err: Error) => {
-                if (err.extensions.code === 'UNAUTHENTICATED') {
-                  setError('Invalid Credentials');
-                } else {
-                  setError('a ocurred error try error later');
-                }
-              });
+              if (e.graphQLErrors) {
+                e.graphQLErrors.forEach((err: Error) => {
+                  if (err.extensions.code === 'UNAUTHENTICATED') {
+                    setError('Invalid Credentials');
+                  } else {
+                    setError('a ocurred error try error later');
+                  }
+                });
+              }
             });
         };
         return (

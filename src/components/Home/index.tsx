@@ -1,15 +1,28 @@
 import React, { useState, useEffect } from 'react';
+import { useMutation } from '@apollo/react-hooks';
+import { gql } from 'apollo-boost';
 
 import Dog from '../Dog';
 import carImage from '../../assets/images/car@2x.png';
 import logoPetHome from '../../assets/images/pethomeRD@2x.png';
 import logoNavi from '../../assets/images/navi@2x.png';
 
+
+const WINNER_MUTATION = gql`
+mutation {
+  selectWinner{
+    name
+    identificationCard
+  }
+}`;
+
 const Home: React.FC = (): JSX.Element => {
   const [step, setStep] = useState(1);
 
+  const [selectWinner, { data }] = useMutation(WINNER_MUTATION);
+
   useEffect(() => {
-    const handleSpace = (event: any): void => {
+    const handleSpace = async (event: any): Promise<void> => {
       if (event.keyCode === 32) {
         event.preventDefault();
         // Each you press space bar (key code 32) go to next step.
@@ -19,6 +32,12 @@ const Home: React.FC = (): JSX.Element => {
         if (step >= 3) {
           count = 1;
         }
+
+        if (step === 1) {
+          /* eslint-disable react-hooks/exhaustive-deps */
+          await selectWinner();
+        }
+
         setStep(count);
       }
     };
@@ -68,8 +87,8 @@ const Home: React.FC = (): JSX.Element => {
 
         <div className={`w7e-winner w7e-step3 ${step === 3 ? 'active' : ''}`}>
           ¡Felicidades!
-          <div>JUANA PEREZ</div>
-          xxx-xxxx31-7
+          <div>{data ? data.selectWinner.name : ''}</div>
+          {data ? data.selectWinner.identificationCard : ''}
         </div>
 
         <div className="w7e-car">
