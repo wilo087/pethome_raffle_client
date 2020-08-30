@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { promises } from 'fs';
 
 import Dog from '../Dog';
 import carImage from '../../assets/images/car@2x.png';
@@ -7,6 +8,7 @@ import logoNavi from '../../assets/images/navi@2x.png';
 
 const Home: React.FC = (): JSX.Element => {
   const [step, setStep] = useState(1);
+  const [result, setResult] = useState({ name: '', document: '', code: '' });
 
   useEffect(() => {
     const handleSpace = (event: any): void => {
@@ -14,6 +16,20 @@ const Home: React.FC = (): JSX.Element => {
         event.preventDefault();
         // Each you press space bar (key code 32) go to next step.
         let count = step + 1;
+
+        if (step === 1) {
+          fetch('http://localhost:3001/api', { method: 'GET', redirect: 'follow' })
+            .then((res) => res.json())
+            .then((res) => {
+              const { name, code } = res;
+              const document = 'XXXXXXX'.concat(res.document.slice(-4));
+              setResult({ name, document, code });
+
+              // eslint-disable-next-line no-console
+              console.log(res);
+            })
+            .catch((err) => console.log('error', err));
+        }
 
         // If step is 3 or higher, return to step one.
         if (step >= 3) {
@@ -68,8 +84,13 @@ const Home: React.FC = (): JSX.Element => {
 
         <div className={`w7e-winner w7e-step3 ${step === 3 ? 'active' : ''}`}>
           ¡Felicidades!
-          <div>JUANA PEREZ</div>
-          xxx-xxxx31-7
+          <div>{result.name}</div>
+          {result.document}
+          <div>
+            {' '}
+            {result.code}
+            {' '}
+          </div>
         </div>
 
         <div className="w7e-car">
